@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="KidsGuard Cloud Team">
+    
+    <meta name="description" content="刻意练习，持续精进 Qihoo 360 KidsGuard Cloud Team official bolg">
+    
+    
+    
+    
+    
+    
+    <title>Web 常见问题排查 | 360 儿童卫士云团队</title>
+    <!-- inject:style -->
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <!-- endinject -->
+    <style>
+        .cube-loading {
+            top: 0;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: url('/images/lg/loading.gif') no-repeat center center;
+            background-color: rgba(0,0,0,.7);
+        }
+
+        .cube-loading.out {
+            display: none;
+        }
+
+        .cube-loading:before {
+            display: block;
+            content: '加载中';
+            position: relative;
+            width: 100%;
+            top: 50%;
+            right: -50%;
+            color: #fff;
+        }
+
+        @media(max-width: 768px) {
+            .cube-loading:before {
+                font-size: 1.2em;
+                transform: translate(-24px,20px);
+                -webkit-transform: translate(-24px,20px);
+                -o-transform: translate(-24px,20px);
+                -ms-transform: translate(-24px,20px);
+            }
+        }
+
+        @media(min-width: 768px) {
+            .cube-loading:before {
+
+            }
+        }
+    </style>
+    
+</head>
+<body>
+<div class="cube-body">
+    <nav id="cube-top-memu" class="cube-menu">
+    <ul class="cube-menu-collapse">
+        
+        <li>
+            <i class="cube-icon cube-icon-home" aria-hidden="true"></i>
+            <a href="/">首页</a>
+        </li>
+        
+        <li>
+            <i class="cube-icon cube-icon-archive" aria-hidden="true"></i>
+            <a href="/archives">归档</a>
+        </li>
+        
+        <li>
+            <i class="cube-icon cube-icon-tags" aria-hidden="true"></i>
+            <a href="/tags">标签</a>
+        </li>
+        
+        <li>
+            <i class="cube-icon cube-icon-handshake" aria-hidden="true"></i>
+            <a href="/jobs">招聘</a>
+        </li>
+        
+        <li>
+            <i class="cube-icon cube-icon-about" aria-hidden="true"></i>
+            <a href="/about">关于我们</a>
+        </li>
+        
+    </ul>
+</nav>
+<nav class="cube-side-menu" id="cube-side-menu">
+    <ul class="cube-menu-list">
+        <li>
+            <a class="scroll-to-top">回到顶部</a>
+        </li>
+    </ul>
+</nav>
+
+    <header class="cube-header" id="cube-header">
+    <img src=" https://p5.ssl.qhimgs0.com/t018d023578c281671e.jpg " alt="头部背景图片">
+    
+    <div class="cube-type">
+        <span class="cube-typed-title">360 儿童卫士云团队</span>
+        <span class="cube-typed-cursor">|</span>
+    </div>
+    
+</header>
+
+    <style>
+        nav.cube-menu:before {
+            content: '';
+            visibility: hidden;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 44px;
+            z-index: -1;
+            background-image: url('https://p5.ssl.qhimgs0.com/t018d023578c281671e.jpg');
+            background-repeat: no-repeat;
+            background-position: center -356px;
+            background-size: cover;
+            background-color: transparent;
+        }
+
+        header.cube-background.cube-header-background {
+            visibility: hidden;
+            background-image: url('https://p5.ssl.qhimgs0.com/t018d023578c281671e.jpg');
+            background-position: center -400px;
+        }
+    </style>
+    <header class="cube-background cube-header-background">
+        
+        <div class="cube-type">
+            <span class="cube-typed-title">360 儿童卫士云团队</span>
+            <span class="cube-typed-cursor">|</span>
+        </div>
+        
+    </header>
+    <div class="load-header-background"></div>
+    <script>
+        (function (window) {
+
+            window.headerModule = {}
+            window.headerModule.image = {
+                width: '2000',
+                height: '1080'
+            }
+
+        })(window)
+    </script>
+    
+
+    <div class="cube-content">
+        <div class="cube-left">
+            <div class="cube-article">
+    <h1 class="title">Web 常见问题排查</h1>
+    
+    <div class="cube-article-header">
+        <div class="cube-article-date">
+            <i class="cube-icon cube-icon-date" aria-hidden="true"></i>
+            <!-- moment.js对象 -->
+            2018-01-25
+        </div>
+        <div class="cube-article-tags">
+    <i class="cube-icon cube-icon-tag" aria-hidden="true"></i>
+    
+    <a href="/tags/nginx/">#nginx</a>
+    
+    <a href="/tags/php/">#php</a>
+    
+</div>
+    </div>
+    
+    <div class="cube-article-content cube-markdown">
+        
+        <p>分享一些平时经典查错手段，人生苦短，我们的目标是，电话通知出bug后,秒登vpn,千里之外定位问题,瞬息之间修复上线，今天不加班</p>
+<a id="more"></a>
+<h2 id="Nginx-日常排查"><a href="#Nginx-日常排查" class="headerlink" title="Nginx 日常排查"></a>Nginx 日常排查</h2><p>根据不同问题，要选择合适的方法，最简单的方法还是查看 <code>error_log</code>，有些怪异的问题，从<code>error_log</code>中中能找到蛛丝马迹。慢请求相关的问题，可通过<code>access_log</code>记录请求时间。如果log中没有什么有用信息，可以尝试分析下系统调用，或网络。程序本身的问题，可能需要gdb调试。</p>
+<h4 id="0x01-检查-error-log"><a href="#0x01-检查-error-log" class="headerlink" title="0x01 检查 error_log"></a>0x01 检查 error_log</h4><blockquote>
+<p>error_log 提供了异常丰富的信息，比如nginx处理请求出错，网络连接出错，后端返回出错，系统调用出错等各种错误信息，如果是线下调试，则可以开启debug信息，便于调试排查</p>
+</blockquote>
+<ul>
+<li><code>connect</code>,<code>write</code>,<code>read timeout</code> 等网络超时错误</li>
+<li><code>Permission denied</code> ，<code>File not found</code>等系统调用错误</li>
+<li>HTTP状态码<code>400</code>,<code>499</code>,<code>500</code>等对应的错误</li>
+</ul>
+<h6 id="HTTP-503"><a href="#HTTP-503" class="headerlink" title="HTTP 503"></a>HTTP 503</h6><blockquote>
+<p>503 Service Temporarily Unavailable</p>
+</blockquote>
+<p>故障检测:  先定位到前端故障服务器节点，在前端服务器上ping后端服务器查看网络延迟丢包情况，后端服务端口响应时间。如发现延迟&gt;100ms，丢包&gt;5%。说明前端到后端网络出现问题。<code>HTTP 503 Service Temporarily Unavailable</code> 故障一般是前端访问后端网络延迟导致。首选排查是不是后端流量过载导致。如果不是，就是前端到后端网络问题。</p>
+<h6 id="HTTP-504"><a href="#HTTP-504" class="headerlink" title="HTTP 504"></a>HTTP 504</h6><blockquote>
+<p>504 Gateway Time-out</p>
+</blockquote>
+<p>故障检测: 查看后端服务器Nginx php mysql资源占用情况，并查看相关错误日志。此类故障几率比较小<code>HTTP 504 Gateway Time-out</code> 故障一般是因的后端服务器响应超时。如PHP程序执行时间太长，数据库查询超时。与程序沟通是否需要增加PHP 执行超时时间。</p>
+<h4 id="0x02-检查-access-log"><a href="#0x02-检查-access-log" class="headerlink" title="0x02 检查 access_log"></a>0x02 检查 access_log</h4><blockquote>
+<p>access_log 提供了客户端访问日志，nginx 的access_log可灵活定义日志格式，日志内容，比如后端响应时间，后端返回状态码，后端的failover过程等，另外，也可根据access_log 进行统计，比如根据接口统计，根据客户端IP统计，根据服务端IP统计，根据后端响应时间统计等。</p>
+</blockquote>
+<ul>
+<li>统计HTTP状态码比例，从而知道nginx服务状况</li>
+<li>统计响应时间，判断超时请求</li>
+<li>根据经验，如果响应时间分布集中在某个数字，并且标准差很小，则很可能是因为超时。</li>
+<li>统计<code>QPS</code>， 对比负载是否均衡</li>
+</ul>
+<blockquote>
+<p>Nginx做反向代理，有时发现某些接口较慢，通常在3s左右</p>
+</blockquote>
+<ul>
+<li><code>nginx access_log</code> 可以记录 <code>upstream_response_time</code></li>
+<li>分析<code>access_log</code> 的 <code>upstream_response_time</code>，发现响应大约<code>3s</code>多</li>
+<li>分析后端 <code>access_log</code>，处理时间在毫秒级别</li>
+<li>最终发现，问题是由于<code>nginx</code>跟后端<code>connect</code>较慢导致</li>
+</ul>
+<hr>
+<h2 id="truss、strace或ltrace查看系统调用"><a href="#truss、strace或ltrace查看系统调用" class="headerlink" title="truss、strace或ltrace查看系统调用"></a>truss、strace或ltrace查看系统调用</h2><blockquote>
+<p>strace和truss用来 用来跟踪系统调用，并可以打印丰富的信息，比如系统调用发生的时间，调用耗时，传参的内容，调用返回结果等等。</p>
+</blockquote>
+<p>truss是早期为System V R4开发的调试程序，包括Aix、FreeBSD在内的大部分Unix系统都自带了这个工具；而strace最初是为SunOS系统编写的，这两个工具现在也已被移植到了大部分Unix系统中，大多数Linux发行版都自带了strace和ltrace，<br>ltrace用来 跟踪进程调用库函数的情况,ltrace最早出现在GNU/Debian Linux中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-f ：除了跟踪当前进程外，还跟踪其子进程。</span><br><span class="line">-o file ：将输出信息写到文件file中，而不是显示到标准错误输出（stderr）。</span><br><span class="line">-p pid ：绑定到一个由pid对应的正在运行的进程。此参数常用来调试后台进程。</span><br></pre></td></tr></table></figure>
+<p>使用上述三个参数基本上就可以完成大多数调试任务了，下面举几个命令行例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">truss -o ls.truss ls -al： 跟踪ls -al的运行，将输出信息写到文件/tmp/ls.truss中。</span><br><span class="line">strace -f -o vim.strace vim： 跟踪vim及其子进程的运行，将输出信息写到文件vim.strace。</span><br></pre></td></tr></table></figure></p>
+<p>另一个十分有用的功能参数-c：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 各项含义如下：</span><br><span class="line"></span><br><span class="line">- % time：执行耗时占总时间百分比</span><br><span class="line">- seconds：执行总时间</span><br><span class="line">- usecs/call：单个命令执行时间</span><br><span class="line">- calls：调用次数</span><br><span class="line">- errors: 出错次数</span><br><span class="line">- syscall: 系统调用</span><br></pre></td></tr></table></figure>
+<h6 id="案例一-futex-表示很可能发生了死锁"><a href="#案例一-futex-表示很可能发生了死锁" class="headerlink" title="案例一 futex 表示很可能发生了死锁"></a>案例一 <code>futex</code> 表示很可能发生了死锁</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[pushaowei@kidsguard ~]$ sudo strace -p 1477</span><br><span class="line"></span><br><span class="line">Process 1477 attached - interrupt to quit</span><br><span class="line">futex(0x398ad53594, FUTEX_WAIT_PRIVATE, 2, NULL</span><br></pre></td></tr></table></figure>
+<h6 id="案例二-处理PHP请求过慢"><a href="#案例二-处理PHP请求过慢" class="headerlink" title="案例二 处理PHP请求过慢"></a>案例二 处理<code>PHP</code>请求过慢</h6><p>可以用<code>strace</code>来验证系统调用耗时，在一次排查PHP问题时，发现有时<code>PHP</code>处理请求过慢，<code>strace –T</code> 发现是<code>flock</code> 调用过慢。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1516867165.279482 flock(4, LOCK_EX)     = 0  &lt; 0.389046 &gt;</span><br><span class="line">1516867165.668528 write(4, &quot;1\t1\t1403674085\t11&quot;..., 76) = 76          &lt;0 .000037 &gt;</span><br><span class="line">1516867165.668565 flock(4, LOCK_UN)     = 0 &lt;&lt;0.000017&gt;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="综合分析"><a href="#综合分析" class="headerlink" title="综合分析"></a>综合分析</h2><blockquote>
+<p>web服务器访问慢通常是以下几类问题：</p>
+</blockquote>
+<ol>
+<li>系统资源不足检查服务器CPU/内存/IO/带宽是否成为瓶颈，异常情况也不要放过，比如CPU单核占用过高，内存时高时低等</li>
+<li>内核、程序参数设置不合理看看有没有报内核错误，连接数用户打开文件数这些有没有达到上限等等</li>
+<li>链路本身慢是否跨运营商、用户上下行带宽不够、dns解析慢、服务器内网广播风暴什么的</li>
+<li>程序设计不合理是否程序本身算法设计太差，数据库语句太过复杂</li>
+<li>其它关联的程序引起的如果要访问数据库，检查一下是否数据库访问慢</li>
+<li>是否被攻击了查看服务器是否被DDOS了等等</li>
+<li>硬件故障这个一般直接服务器就挂了，而不是访问慢某些故障会伴随一些其它现象发生，比如说CPU过高/内存过高/网络带宽被打满/nf_contrack表设置过低的时候你会发现SSH上去敲命令都很慢。排查思路没有固定的套路，不过某些经验和知识能够加快你的定位问题的速度，应该先把能想到的都加上监控项，然后结合报警、经验利用控制变量法具体分析。</li>
+</ol>
+
+    </div>
+</div>
+
+<div class="cube-article-nav">
+    <ul>
+        
+        
+        <li class="next">
+            <a href="/2018/01/25/Charles 简明指南/">
+                Charles 简明指南
+                <i class="cube-icon cube-next" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+<!-- TODO 根据theme.comment的内容进行入口选择 -->
+
+    <!-- 因为gitment里面也有gitment-container，所以这里就改为gitment-comment -->
+<div class="gitment-comment">
+    <div id="container"></div>
+</div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+        // id default is location.href
+        owner: 'PuShaoWei',
+        repo: '360kids.github.io',
+        oauth: {
+            client_id: '8de068ad7cca05880cb4',
+            client_secret: '2d34ee9695f0b69422d4b0ff6094a13be88fb167',
+        },
+    })
+    gitment.render('container')
+</script>
+    
+
+
+        </div>
+        <div class="cube-right">
+            
+
+<div class="cube-search cube-sidebar" id="cube-search">
+    <div class="search-container">
+        <input type="text" placeholder="搜索" class="cube-search-input" id="cube-search-input">
+        <i class="cube-icon cube-icon-search cube-search-submit" aria-hidden="true"></i>
+    </div>
+    <!-- TODO 通过给window赋一个全局变量，通过脚本赋值 -->
+</div>
+<script>
+    (function (window) {
+        'use strict';
+        window.searchModule = {}
+        window.searchModule.JSONUrl = '/content.json'
+        window.searchModule.rootUrl = '/'
+    })(window)
+</script>
+<div class="cube-search-form">
+    <div class="cube-search-control">
+        <input type="text" placeholder="搜索" class="search-input">
+        <a class="close-button">
+            <i class="cube-icon cube-close" aria-hidden="true"></i>
+        </a>
+    </div>
+    <div class="cube-search-result"></div>
+</div>
+
+
+<div class="cube-author cube-sidebar" id="cube-author">
+    <style>
+        @media(min-width: 768px) {
+            .cube-author img {
+                width: 90%;
+                margin: 0 auto;
+                height: auto;
+                padding: 20px 0 10px 0;
+                display: block;
+            }
+        }
+    </style>
+    <div class="count" style="padding-top: 26px;">
+        <a class="count articles"><span>2</span>文章</a>
+        <a class="count tags"><span>4</span>标签</a>
+        <a class="count categories"><span>2</span>分类</a>
+    </div>
+</div>
+
+
+
+<div class="cube-recent-posts cube-sidebar" id="cube-recent-posts">
+    <div class="title">
+        <a>近期文章</a>
+    </div>
+    <ul class="list">
+        
+        
+        <li>
+            <!-- TODO 如果文章要显示图片，那么在front-matter上添加preview属性(url or path) -->
+            
+            <div class="normal">
+                <p class="index first">
+                    <span>1</span>
+                </p>
+                <p class="title">
+                    <a href="/2018/01/25/Web 常见问题排查/" title="Web 常见问题排查">Web 常见问题排查</a>
+                </p>
+            </div>
+            
+        </li>
+        
+        
+        
+        <li>
+            <div class="normal">
+                <p class="index">
+                    <span>2</span>
+                </p>
+                <p class="title">
+                    <a href="/2018/01/25/Charles 简明指南/" title="Charles 简明指南">Charles 简明指南</a>
+                </p>
+            </div>
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+
+<div class="cube-tagcloud cube-sidebar" id="cube-tagcloud">
+    <div class="title">
+        <a href="/tags">标签云</a>
+    </div>
+    <div class="cube-boxs">
+        
+        
+        <div class="cube-box ">
+            <a href="/tags/nginx/">#nginx</a>
+        </div>
+        
+        
+        <div class="cube-box ">
+            <a href="/tags/php/">#php</a>
+        </div>
+        
+        
+        <div class="cube-box ">
+            <a href="/tags/抓包/">#抓包</a>
+        </div>
+        
+        
+        <div class="cube-box-bg ">
+            <a href="/tags/抓包工具/">#抓包工具</a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="cube-links cube-sidebar" id="cube-links">
+    <div class="title">
+        <a>个人链接</a>
+    </div>
+    <ul class="list">
+        
+        <li>
+            
+            
+            <img src="http://cube-1252774894.cosgz.myqcloud.com/links/GitHub.png">
+            
+            <a href="https://github.com/360kids" target="_blank">GitHub</a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+    </div>
+</div>
+<footer class="cube-footer">
+    <div>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.&nbsp; Copyright <i class="fa fa-copyright"></i>  2018 <i style="    color:  #f00;" class="fa fa-heart animated infinite pulse"></i> 360儿童卫士云端团队  </div>
+
+</footer>
+<!-- inject:script -->
+<script src="/js/script.js"></script>
+<!-- endinject -->
+<div class="cube-loading out"></div>
+</body>
+</html>

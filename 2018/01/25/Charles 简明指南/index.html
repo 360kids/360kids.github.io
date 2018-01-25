@@ -12,7 +12,7 @@
     
     
     
-    <title>jobs | Qihoo KidsGuard Cloud Team</title>
+    <title>Charles 简明指南 | 360 儿童卫士云团队</title>
     <!-- inject:style -->
     <link href="/css/style.css" rel="stylesheet" type="text/css">
     <!-- endinject -->
@@ -74,11 +74,6 @@
         </li>
         
         <li>
-            <i class="cube-icon cube-icon-categories" aria-hidden="true"></i>
-            <a href="/categories">分类</a>
-        </li>
-        
-        <li>
             <i class="cube-icon cube-icon-tags" aria-hidden="true"></i>
             <a href="/tags">标签</a>
         </li>
@@ -107,7 +102,7 @@
     <img src=" https://p5.ssl.qhimgs0.com/t018d023578c281671e.jpg " alt="头部背景图片">
     
     <div class="cube-type">
-        <span class="cube-typed-title">360 KidsGuard Cloud Team</span>
+        <span class="cube-typed-title">360 儿童卫士云团队</span>
         <span class="cube-typed-cursor">|</span>
     </div>
     
@@ -139,7 +134,7 @@
     <header class="cube-background cube-header-background">
         
         <div class="cube-type">
-            <span class="cube-typed-title">360 KidsGuard Cloud Team</span>
+            <span class="cube-typed-title">360 儿童卫士云团队</span>
             <span class="cube-typed-cursor">|</span>
         </div>
         
@@ -161,22 +156,89 @@
     <div class="cube-content">
         <div class="cube-left">
             <div class="cube-article">
-    <h1 class="title">jobs</h1>
+    <h1 class="title">Charles 简明指南</h1>
     
     <div class="cube-article-header">
-        <div class="cube-article-date page">
+        <div class="cube-article-date">
             <i class="cube-icon cube-icon-date" aria-hidden="true"></i>
             <!-- moment.js对象 -->
             2018-01-25
         </div>
+        <div class="cube-article-tags">
+    <i class="cube-icon cube-icon-tag" aria-hidden="true"></i>
+    
+    <a href="/tags/抓包工具/">#抓包工具</a>
+    
+</div>
     </div>
     
     <div class="cube-article-content cube-markdown">
         
-        
+        <p><a href="https://link.jianshu.com/?t=http://www.charlesproxy.com/" target="_blank" rel="noopener">Charles</a> 是在 <code>Mac</code>或<code>Windows</code> 下常用的网络封包截取工具，在做 移动开发时，我们为了调试与服务器端的网络通讯协议，常常需要截取网络封包来分析。通过将自己设置成系统的网络访问代理服务器，使得所有的网络访问请求都通过它来完成，从而实现了网络封包的截取和分析。<br>除了在做移动开发中调试端口外，<code>Charles</code> 也可以用于分析第三方应用的通讯协议。配合 <code>Charles</code> 的 <code>SSL</code> 功能，<code>Charles</code> 还可以分析 <code>Https</code> 协议</p>
+<a id="more"></a>
+<h2 id="安装Charles"><a href="#安装Charles" class="headerlink" title="安装Charles"></a>安装Charles</h2><p><code>Charles</code> 是收费软件，可以免费试用 <code>30</code> 天。试用期过后，未付费的用户仍然可以继续使用，但是每次使用时间不能超过 30 分钟，并且启动时将会有 10 秒种的延时。因此，该付费方案对广大用户还是相当友好的，即使你长期不付费，也能使用完整的软件功能。只是当你需要长时间进行封包调试时，会因为 <code>Charles</code> 强制关闭而遇到影响。</p>
+<blockquote>
+<p>Step 1 : 不管怎么说先<a href="https://www.charlesproxy.com/download/latest-release/" target="_blank" rel="noopener">点击下载</a>官方安装包<br><code>Charles</code> 是收费软件，可以免费试用 <code>30</code> 天</p>
+<p>Step 2 : 爆破任务</p>
+</blockquote>
+<ol>
+<li>下载破解文件 <a href="https://www.baidu.com/s?ie=UTF-8&amp;wd=charles.jar" target="_blank" rel="noopener">charles.jar</a></li>
+<li><a href="https://www.zzzmode.com/mytools/charles/" target="_blank" rel="noopener">在线破解工具</a></li>
+<li><code>MAC</code> -&gt; 访达 - 程序 - Charles -显示包内容  </li>
+<li>替换掉原文件夹里的<code>charles.jar</code></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Mac: /Applications/Charles.app/Contents/Java/charles.jar</span><br><span class="line">Windows: X:\Program Files\Charles\lib\charles.jar</span><br></pre></td></tr></table></figure>
+<ol>
+<li>再次打开Charles无需操作即可完美激活</li>
+</ol>
+<h2 id="Http抓包操作步骤"><a href="#Http抓包操作步骤" class="headerlink" title="Http抓包操作步骤"></a>Http抓包操作步骤</h2><blockquote>
+<p>Step 1 开启Charleshttp代理</p>
+</blockquote>
+<h5 id="0x01-设置Charles代理"><a href="#0x01-设置Charles代理" class="headerlink" title="0x01 设置Charles代理"></a>0x01 设置Charles代理</h5><p>第一次启动默认会开启本机的系统代理</p>
+<p><img src="http://p1.qhimg.com/t012a5cc2da9193737f.jpg" alt="Step1"></p>
+<h5 id="0x02-激活http代理功能"><a href="#0x02-激活http代理功能" class="headerlink" title="0x02 激活http代理功能"></a>0x02 激活http代理功能</h5><p><img src="http://p3.qhimg.com/t01e40e2a72dae80d78.jpg" alt="Step2"></p>
+<p>你就可以看到源源不断的网络请求出现在 <code>Charles</code> 的界面中。<br>需要注意的是，<code>Chrome</code> 和 <code>Firefox</code> 浏览器默认并不使用系统的代理服务器设置，而 <code>Charles</code> 是通过将自己设置成代理服务器来完成封包截取的，所以在默认情况下无法截取 <code>Chrome</code> 和 <code>Firefox</code> 浏览器的网络通讯内容。如果你需要截取的话，在 <code>Chrome</code> 中设置成使用系统的代理服务器设置即可，或者直接将代理服务器设置成 <code>127.0.0.1:8888</code><br>也可达到相同效果。</p>
+<p>写到这里时，我的Charles 打不开了 。。。</p>
+
     </div>
 </div>
 
+<div class="cube-article-nav">
+    <ul>
+        
+        <li class="prev">
+            <a href="/2018/01/25/Web 常见问题排查/">
+                <i class="cube-icon cube-prev" aria-hidden="true"></i>
+                Web 常见问题排查
+            </a>
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+<!-- TODO 根据theme.comment的内容进行入口选择 -->
+
+    <!-- 因为gitment里面也有gitment-container，所以这里就改为gitment-comment -->
+<div class="gitment-comment">
+    <div id="container"></div>
+</div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+        // id default is location.href
+        owner: 'PuShaoWei',
+        repo: '360kids.github.io',
+        oauth: {
+            client_id: '8de068ad7cca05880cb4',
+            client_secret: '2d34ee9695f0b69422d4b0ff6094a13be88fb167',
+        },
+    })
+    gitment.render('container')
+</script>
+    
 
 
         </div>
@@ -222,9 +284,9 @@
         }
     </style>
     <div class="count" style="padding-top: 26px;">
-        <a class="count articles"><span>1</span>文章</a>
-        <a class="count tags"><span>1</span>标签</a>
-        <a class="count categories"><span>1</span>分类</a>
+        <a class="count articles"><span>2</span>文章</a>
+        <a class="count tags"><span>4</span>标签</a>
+        <a class="count categories"><span>2</span>分类</a>
     </div>
 </div>
 
@@ -240,22 +302,28 @@
         <li>
             <!-- TODO 如果文章要显示图片，那么在front-matter上添加preview属性(url or path) -->
             
-            
-            <div class="preview">
+            <div class="normal">
                 <p class="index first">
                     <span>1</span>
                 </p>
-                <div class="image" style="background-image: url(http://ouo1ro65u.bkt.clouddn.com/图片预览.png);"></div>
-                <div class="info">
-                    <p class="title">
-                        <a href="/2018/07/07/httpCode/" title="测试测试">测试测试</a>
-                    </p>
-                    <p class="date">
-                        2018-07-07
-                    </p>
-                </div>
+                <p class="title">
+                    <a href="/2018/01/25/Web 常见问题排查/" title="Web 常见问题排查">Web 常见问题排查</a>
+                </p>
             </div>
             
+        </li>
+        
+        
+        
+        <li>
+            <div class="normal">
+                <p class="index">
+                    <span>2</span>
+                </p>
+                <p class="title">
+                    <a href="/2018/01/25/Charles 简明指南/" title="Charles 简明指南">Charles 简明指南</a>
+                </p>
+            </div>
         </li>
         
         
@@ -272,7 +340,22 @@
         
         
         <div class="cube-box ">
-            <a href="/tags/intellectual/">#intellectual</a>
+            <a href="/tags/nginx/">#nginx</a>
+        </div>
+        
+        
+        <div class="cube-box ">
+            <a href="/tags/php/">#php</a>
+        </div>
+        
+        
+        <div class="cube-box ">
+            <a href="/tags/抓包/">#抓包</a>
+        </div>
+        
+        
+        <div class="cube-box-bg ">
+            <a href="/tags/抓包工具/">#抓包工具</a>
         </div>
         
     </div>
